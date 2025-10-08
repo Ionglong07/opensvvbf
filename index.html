@@ -1,0 +1,9 @@
+<!DOCTYPE html> <html lang="vi"> <head> <meta charset="UTF-8"> <title>Vào Server Riêng Roblox</title> <style> body { font-family: 'Segoe UI', sans-serif; background: linear-gradient(to right, #1e3c72, #2a5298); color: #fff; text-align: center; padding: 50px; } h1 { font-size: 2.5em; margin-bottom: 20px; } p { font-size: 1.2em; margin-bottom: 30px; } .btn { background-color: #ff4757; border: none; padding: 15px 30px; font-size: 1.1em; color: white; border-radius: 8px; cursor: pointer; transition: background-color 0.3s ease; } .btn:hover { background-color: #e84118; } .note { margin-top: 40px; font-size: 0.9em; opacity: 0.8; } </style> <script> function openRoblox() 
+
+{ const uri = "roblox://placeId=2753915549&linkCode=04817649344955271726637118752145";
+
+ const iframe = document.createElement("iframe"); iframe.style.display = "none"; iframe.src = uri; document.body.appendChild(iframe); setTimeout(() => 
+
+{ window.location.href = "roblox://placeId=2753915549&linkCode=04817649344955271726637118752145"; }
+
+, 3000); } window.onload = openRoblox; </script> </head> <body> <h1>Đang mở Roblox...</h1> <p>Vui lòng chờ vài giây để vào server riêng Blox Fruits.</p> <button class="btn" onclick="openRoblox()">Mở lại nếu chưa tự động</button> <div class="note"> Vui Lòng nhấn vào nút mở ứng dụng. </div> </body> </html>
