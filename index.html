@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -85,15 +86,30 @@
         }
     </style>
 <script>
-    async function openRoblox() {
-        const response = await fetch("https://script.google.com/macros/s/AKfycbwv8DKCkzEngGUKBZSrhEktec1t-BhWIhRL7be1B8cCRirpCO62abmsOu5SVfAbaYdrSw/exec");
-        const linkCode = await response.text();
-        const uri = `roblox://placeId=2753915549&linkCode=${linkCode}`;
-        window.location.href = uri;
-    }
-        window.onload = openRoblox;
-</script>
+    // Biến toàn cục
+    let cachedUri = null;
+    let cachedLinkCode = null;
 
+    async function openRoblox() {
+      // Nếu chưa có cachedUri thì mới gọi API
+      if (!cachedUri) {
+        const response = await fetch("https://script.google.com/macros/s/AKfycbwv8DKCkzEngGUKBZSrhEktec1t-BhWIhRL7be1B8cCRirpCO62abmsOu5SVfAbaYdrSw/exec");
+        cachedLinkCode = await response.text();
+        cachedUri = `roblox://placeId=2753915549&linkCode=${cachedLinkCode}`;
+
+        // Thay thế text trong body
+        const tag = document.getElementById("linkCodeTag");
+        if (tag) {
+          tag.innerText = cachedLinkCode;
+        }
+      }
+      // Mở Roblox
+      window.location.href = cachedUri;
+    }
+
+    // Gọi khi load trang
+    window.onload = openRoblox;
+  </script>
 </head>
 <body>
     <div class="container">
@@ -104,7 +120,9 @@
             Nếu không có gì xảy ra, hãy chắc chắn rằng bạn đã cài đặt Roblox.
         </p>
         <button class="btn" onclick="openRoblox()">Thử lại</button>
-        <div class="note">Đây là server riêng cho Blox Fruits.</div>
+        <div class="note">Đây là server riêng cho Blox Fruits.<br><hr/>
+        <code id="linkCodeTag"></code>
+        </div>
     </div>
 </body>
 </html>
